@@ -1,9 +1,3 @@
-Of course. Based on our entire journey, from the initial ECS Fargate build to the final, cost-effective App Runner solution, I have compiled a comprehensive `README.md` file.
-
-This document is written to the high standard of your previous examples. It not only explains *what* was built but also *why* specific architectural decisions were made, highlighting the professional DevOps patterns you've implemented. It fully complies with the original assignment's requirements and is tailored specifically to your final `aws-apprunner-containerized-webapp` repository.
-
----
-
 # AWS DevOps Engineer – Demo Assignment (App Runner)
 
 ![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)![AWS App Runner](https://img.shields.io/badge/AWS%20App%20Runner-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
