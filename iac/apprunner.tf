@@ -50,7 +50,7 @@ resource "aws_apprunner_service" "main" {
 }
 
 resource "aws_apprunner_custom_domain_association" "main" {
-  domain_name = var.domain_name
+  domain_name = "app.${var.domain_name}"
   service_arn = aws_apprunner_service.main.arn
 }
 
