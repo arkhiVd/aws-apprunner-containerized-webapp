@@ -1,0 +1,47 @@
+name: Manage Infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Terraform action to perform (apply or destroy)'
+        required: true
+        type: choice
+        options:
+        - apply
+        - destroy
+
+jobs:
+  terraform:
+    name: Terraform ${{ github.event.inputs.action }}
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+          role-to-assume: arn:aws:iam::615201069679:role/GitHubActions_ECS_Role
+          aws-region: ap-south-1 
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    - name: Terraform Init
+      run: terraform -chdir=iac init
+
+    - name: Terraform Apply
+      if: github.event.inputs.action == 'apply'
+      run: |
+        terraform -chdir=iac apply -auto-approve \
+          -var="domain_name=${{ vars.DOMAIN_NAME }}" \
+          -var="docker_image_url=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/portfolio-app-runner-repo:initial"
+
+    - name: Terraform Destroy
+      if: github.event.inputs.action == 'destroy'
+      run: terraform -chdir=iac destroy -auto-approve -var="domain_name=${{ vars.DOMAIN_NAME }}"
