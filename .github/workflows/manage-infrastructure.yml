@@ -40,7 +40,7 @@ jobs:
       run: |
         terraform -chdir=iac apply -auto-approve \
           -var="domain_name=${{ vars.DOMAIN_NAME }}" \
-          -var="docker_image_url=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/portfolio-app-runner-repo:initial"
+          -var="docker_image_url=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/portfolio-app-runner-repo:latest"
 
     - name: Terraform Destroy
       if: github.event.inputs.action == 'destroy'
